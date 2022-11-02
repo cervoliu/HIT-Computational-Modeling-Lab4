@@ -20,7 +20,9 @@ $$\mathrm{PSNR} = 20 \log_{10}(\dfrac{\mathrm{MAX_f}}{\sqrt{\mathrm{MSE}}})$$
 $$ \mathrm{MSE} = \dfrac{1}{mn} \sum_{i=0}^{m-1} \sum_{j=0}^{n-1}  [f(i,j)-g(i,j)]^2$$
 
 SSIM: Structural Similarity
+
 $$ \mathrm{SSIM}(x,y)=\dfrac{(2\mu_{x}\mu_{y}+c_1)(2\sigma_{xy}+c_2)}{(\mu_{x}^2+\mu_{y}^2+c_1)(\sigma_{x}^2+\sigma_{y}^2+c_2)}$$
+
 with
 - $\mu_{x}$ the pixel sample mean of $x$
 - $\mu_{y}$ the pixel sample mean of $y$
