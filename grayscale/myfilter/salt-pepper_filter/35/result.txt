@@ -1,0 +1,1 @@
+filename = lena.bmp, best ksize = 3, psnr = 32.402033367675465, ssim = 0.9918516349975163

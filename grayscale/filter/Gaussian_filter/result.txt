@@ -1,0 +1,6 @@
+filename = animal.bmp, psnr = 31.726431439581823, ssim = 0.9739610110001995
+filename = landscape1.bmp, psnr = 29.5316511085703, ssim = 0.9878970799500087
+filename = landscape2.bmp, psnr = 26.05175077205205, ssim = 0.9622918869599152
+filename = lena.bmp, psnr = 28.703093240490713, ssim = 0.9802456494604355
+filename = pigeon.bmp, psnr = 31.99030864829954, ssim = 0.9922818530700322
+filename = yukino.bmp, psnr = 27.653031646775297, ssim = 0.9899829053641788

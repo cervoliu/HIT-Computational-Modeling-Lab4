@@ -1,0 +1,6 @@
+filename = animal.bmp, best ksize = 3, psnr = 40.36173294738846, ssim = 0.9964870049052654
+filename = landscape1.bmp, best ksize = 3, psnr = 36.784860416253785, ssim = 0.9977647243828567
+filename = landscape2.bmp, best ksize = 3, psnr = 31.204386131251272, ssim = 0.9890838409550903
+filename = lena.bmp, best ksize = 3, psnr = 35.85270871311731, ssim = 0.9963194265120787
+filename = pigeon.bmp, best ksize = 3, psnr = 43.26783087224502, ssim = 0.9994403000225922
+filename = yukino.bmp, best ksize = 3, psnr = 38.204545290407566, ssim = 0.9991314401460789
