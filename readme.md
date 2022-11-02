@@ -1,9 +1,26 @@
+github repository : https://github.com/cervoliu/HIT-Computational-Modeling-Lab4
+
+--- 
+
 # 图像去噪
 **由于计算量巨大，运行时间较长！**
-## 结果验证
+仅实现grayscale图像
+## verification
+添加噪声:
+```
+python make_noise.py
+```
+去除噪声：
 
+salt-pepper_filter.py 使用 cv2.medianBlur()
+my_salt-pepper_filter.py 使用 手写中值滤波（比前者慢许多，慎用！）
+```
+python Gaussian_filter.py
+python salt-pepper_filter.py or python my_salt-pepper_filter.py
+python mixed_filter.py
+```
 
-## 基本思路
+## idea
 - 仅含有椒盐噪声：中值滤波
 - 仅含有高斯噪声：高斯滤波（高斯模糊）
 - 混合噪声（先添加高斯噪声，再添加椒盐噪声）：先中值滤波，再高斯滤波
@@ -36,3 +53,76 @@ with
 ---
 
 # 高斯背景建模
+
+## verification
+```
+python background_modeling.py
+```
+
+---
+
+project tree
+
+```
+lab4
+├─ background_modeling.py
+├─ color
+│  ├─ animal_c.bmp
+│  ├─ landscape1_c.bmp
+│  ├─ landscape2_c.bmp
+│  ├─ lena_c.bmp
+│  ├─ pigeon_c.bmp
+│  └─ yukino_c.bmp
+├─ filter.py
+├─ Gaussian_filter.py
+├─ grayscale
+│  ├─ addnoise
+│  │  ├─ Gaussian_noise
+│  │  │  ├─ ...
+│  │  │  └─ yukino.bmp
+│  │  ├─ mixed_noise
+│  │  │  ├─ ...
+│  │  │     ├─ ...
+│  │  │     └─ yukino.bmp
+│  │  └─ salt-pepper_noise
+│  │     ├─ ...
+│  │     │  ├─ ...
+│  │     │  └─ yukino.bmp
+│  ├─ filter
+│  │  ├─ Gaussian_filter
+│  │  │  ├─ ...
+│  │  │  ├─ yukino.bmp
+│  │  │  └─ result.txt
+│  │  ├─ mixed_filter
+│  │  │  ├─ ...
+│  │  │  │  ├─ ...
+│  │  │  │  ├─ yukino.bmp
+│  │  │  │  └─ result.txt
+│  │  └─ salt-pepper_filter
+│  │  │  ├─ ...
+│  │  │  │  ├─ ...
+│  │  │  │  ├─ yukino.bmp
+│  │  │  │  └─ result.txt
+│  ├─ myfilter
+│  │  └─ salt-pepper_filter
+│  │     ├─ ...
+│  │        ├─ lena.bmp
+│  │        └─ result.txt
+│  └─ pics
+│     ├─ animal.bmp
+│     ├─ landscape1.bmp
+│     ├─ landscape2.bmp
+│     ├─ lena.bmp
+│     ├─ pigeon.bmp
+│     └─ yukino.bmp
+├─ make_noise.py
+├─ measure.py
+├─ mixed_filter.py
+├─ myfilter.py
+├─ my_salt-pepper_filter.py
+├─ README.md
+├─ salt-pepper_filter.py
+└─ video
+   └─ test.avi
+
+```
