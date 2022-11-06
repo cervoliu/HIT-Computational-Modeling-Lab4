@@ -1,19 +1,26 @@
 github repository : https://github.com/cervoliu/HIT-Computational-Modeling-Lab4
 
+目录解释参加本文档末尾的 project tree
+
 --- 
 
 # 图像去噪
 **由于计算量巨大，运行时间较长！**
+
 仅实现grayscale图像
+
 ## verification
 添加噪声:
 ```
 python make_noise.py
 ```
+
 去除噪声：
 
 salt-pepper_filter.py 使用 cv2.medianBlur()
+
 my_salt-pepper_filter.py 使用 手写中值滤波（比前者慢许多，慎用！）
+
 ```
 python Gaussian_filter.py
 python salt-pepper_filter.py or python my_salt-pepper_filter.py
@@ -28,6 +35,7 @@ python mixed_filter.py
 ## PSNR与SSIM的计算
 
 PSNR: Peak Signal-to-Noise Ratio
+
 MSE: Mean Square Error
 
 $\mathrm{MAX_f}$ 表示图像点颜色的最大数值，对于8-bit图像为255
@@ -65,64 +73,61 @@ project tree
 
 ```
 lab4
-├─ background_modeling.py
-├─ color
+├─ background_modeling.py 背景建模源代码
+├─ color 灰度图像对应的彩色图像
 │  ├─ animal_c.bmp
 │  ├─ landscape1_c.bmp
 │  ├─ landscape2_c.bmp
 │  ├─ lena_c.bmp
 │  ├─ pigeon_c.bmp
 │  └─ yukino_c.bmp
-├─ filter.py
-├─ Gaussian_filter.py
-├─ grayscale
-│  ├─ addnoise
-│  │  ├─ Gaussian_noise
+├─ Gaussian_filter.py 高斯去噪源代码
+├─ grayscale 灰度图像实验结果
+│  ├─ addnoise 图像添加噪声后的结果
+│  │  ├─ Gaussian_noise 添加高斯噪声
 │  │  │  ├─ ...
 │  │  │  └─ yukino.bmp
-│  │  ├─ mixed_noise
+│  │  ├─ mixed_noise 添加混合噪声（先高斯，后椒盐）
 │  │  │  ├─ ...
 │  │  │     ├─ ...
 │  │  │     └─ yukino.bmp
-│  │  └─ salt-pepper_noise
+│  │  └─ salt-pepper_noise 添加椒盐噪声
 │  │     ├─ ...
 │  │     │  ├─ ...
 │  │     │  └─ yukino.bmp
-│  ├─ filter
-│  │  ├─ Gaussian_filter
+│  ├─ filter 加噪图像去除噪声（滤波）后的结果（使用cv2库函数滤波）
+│  │  ├─ Gaussian_filter 对 Gaussian_noise 滤波
 │  │  │  ├─ ...
 │  │  │  ├─ yukino.bmp
 │  │  │  └─ result.txt
-│  │  ├─ mixed_filter
+│  │  ├─ mixed_filter 对 mixed_noise 滤波
 │  │  │  ├─ ...
 │  │  │  │  ├─ ...
 │  │  │  │  ├─ yukino.bmp
 │  │  │  │  └─ result.txt
-│  │  └─ salt-pepper_filter
+│  │  └─ salt-pepper_filter 对 salt-pepper_noise 滤波
 │  │  │  ├─ ...
 │  │  │  │  ├─ ...
 │  │  │  │  ├─ yukino.bmp
 │  │  │  │  └─ result.txt
-│  ├─ myfilter
+│  ├─ myfilter 加噪图像去除椒盐噪声（中值滤波）后的结果（手写中值滤波；因效率问题，仅对 lena.bmp 测试）
 │  │  └─ salt-pepper_filter
 │  │     ├─ ...
 │  │        ├─ lena.bmp
 │  │        └─ result.txt
-│  └─ pics
+│  └─ pics 原始灰度图像
 │     ├─ animal.bmp
 │     ├─ landscape1.bmp
 │     ├─ landscape2.bmp
 │     ├─ lena.bmp
 │     ├─ pigeon.bmp
 │     └─ yukino.bmp
-├─ make_noise.py
-├─ measure.py
-├─ mixed_filter.py
-├─ myfilter.py
-├─ my_salt-pepper_filter.py
-├─ README.md
-├─ salt-pepper_filter.py
+├─ make_noise.py  添加噪声源代码
+├─ mixed_filter.py 混合去噪源代码
+├─ my_salt-pepper_filter.py 椒盐去噪源代码（手写中值滤波）
+├─ README.md 本文件
+├─ salt-pepper_filter.py 椒盐去噪源代码（使用cv2库函数）
 └─ video
-   └─ test.avi
+   └─ test.avi  背景建模测试视频
 
 ```
