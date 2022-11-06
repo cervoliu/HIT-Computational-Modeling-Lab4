@@ -122,11 +122,12 @@ lab4
 │     ├─ lena.bmp
 │     ├─ pigeon.bmp
 │     └─ yukino.bmp
-├─ make_noise.py  添加噪声源代码
-├─ mixed_filter.py 混合去噪源代码
-├─ my_salt-pepper_filter.py 椒盐去噪源代码（手写中值滤波）
+├─ make_noise.py  添加噪声
+├─ mixed_filter.py 混合去噪
+├─ my_salt-pepper_filter.py 椒盐去噪（手写中值滤波）
+├─ filter_new.py  自适应窗口大小中值滤波
 ├─ README.md 本文件
-├─ salt-pepper_filter.py 椒盐去噪源代码（使用cv2库函数）
+├─ salt-pepper_filter.py 椒盐去噪（使用cv2库函数）
 └─ video
    └─ test.avi  背景建模测试视频
 
