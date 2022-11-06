@@ -32,8 +32,11 @@ def SSIM(f : np.ndarray, g : np.ndarray) -> float:
     sigma_xy /= (m * n - 1)
     return (2 * mu_x * mu_y + c1) * (2 * sigma_xy + c2) / ((mu_x ** 2) + (mu_y ** 2) + c1) / ((sigma_x ** 2) + (sigma_y ** 2) + c2)
 
-def median_filter(img : np.ndarray, ksize : int) -> np.ndarray:
+def median_filter(img : np.ndarray) -> np.ndarray:
     m, n = img.shape
+
+    check = lambda x, y : 0 <= x < m and 0 <= y < n and 0 < img[x][y] < 255
+
     res = img.copy()
     for i in range(m):
         for j in range(n):
@@ -41,19 +44,26 @@ def median_filter(img : np.ndarray, ksize : int) -> np.ndarray:
                 res[i][j] = img[i][j]
                 continue
             arr = []
-            for x in range(i - ksize, i + ksize + 1):
-                for y in range(j - ksize, j + ksize + 1):
-                    if 0 <= x < m and 0 <= y < n:
-                        arr.append(img[x][y])
+            for k in range(1, 100): # ksize = 2 * k + 1
+                for y in range(j - k, j + k):
+                    if check(i - k, y): arr.append(img[i - k][y])
+                    if check(i + k, y): arr.append(img[i + k][y])
+                for x in range(i - k + 1, i + k):
+                    if check(x, j - k): arr.append(img[x][j - k])
+                    if check(x, j + k): arr.append(img[x][j + k])
+                if check(i - k, j + k): arr.append(img[i - k][j + k])
+                if check(i + k, j + k): arr.append(img[i + k][j + k])
+                
+                if len(arr) > 0: break
             res[i][j] = np.median(arr)
     return res
 
 if __name__ == "__main__":
-    for SNR in range(5, 100, 10):
+    for SNR in range(95, 100, 10):
         pics_dir = ".\\grayscale\\pics\\"
         noise_dir = ".\\grayscale\\addnoise\\salt-pepper_noise\\" + str(SNR) + "\\"
         # filter_dir = ".\\grayscale\\filter\\salt-pepper_filter\\" + str(SNR) + "\\"
-        filter_dir = ".\\grayscale\\myfilter\\salt-pepper_filter\\" + str(SNR) + "\\"
+        filter_dir = ".\\grayscale\\newfilter\\salt-pepper_filter\\" + str(SNR) + "\\"
         Path(filter_dir).mkdir(parents=True, exist_ok=True)
         result = open(filter_dir + "result.txt", mode='w')
 
@@ -64,22 +74,8 @@ if __name__ == "__main__":
             img0 = cv2.imread(pics_dir + file_name, 0)
             img_noise = cv2.imread(noise_dir + file_name, 0)
 
-            ksize_best = 0
-            psnr_best = 0
-            ssim_best = 0
-            img_best = None
-            for k in range(3, 255, 2):
-                img_median = cv2.medianBlur(img_noise, k)
-                # img_median = median_filter(img_noise, k)
-                psnr = PSNR(img0, img_median)
-                ssim = SSIM(img0, img_median)
-                if psnr > psnr_best:
-                    psnr_best = psnr
-                    ssim_best = ssim
-                    ksize_best = k
-                    img_best = img_median
-                else:
-                    break #PSNR is single peak function
-            result.write('filename = {0}, best ksize = {1}, psnr = {2}, ssim = {3}\n'.format(
-                        file_name, ksize_best, psnr_best, ssim_best))
-            cv2.imwrite(filter_dir + file_name, img_best)
+            img_median = median_filter(img_noise)
+            psnr = PSNR(img0, img_median)
+            ssim = SSIM(img0, img_median)
+            result.write('filename = {0}, psnr = {1}, ssim = {2}\n'.format(file_name, psnr, ssim))
+            cv2.imwrite(filter_dir + file_name, img_median)
