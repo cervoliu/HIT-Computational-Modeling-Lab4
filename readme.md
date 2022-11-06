@@ -1,6 +1,6 @@
 github repository : https://github.com/cervoliu/HIT-Computational-Modeling-Lab4
 
-目录解释参加本文档末尾的 project tree
+目录解释见本文档末尾的 project tree
 
 --- 
 
