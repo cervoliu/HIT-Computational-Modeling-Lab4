@@ -1,4 +1,4 @@
-github repository : https://github.com/cervoliu/HIT-Computational-Modeling-Lab4
+哈工大 计算建模 实验四
 
 目录解释见本文档末尾的 project tree
 
